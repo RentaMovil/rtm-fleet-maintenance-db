@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS ix_vehicle_maintenance_vehicle_id_status ON fleet.vehicle_maintenance;
