@@ -1,0 +1,2 @@
+IF SCHEMA_ID('fleet') IS NOT NULL
+    EXEC('DROP SCHEMA fleet');
