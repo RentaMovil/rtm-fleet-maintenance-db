@@ -70,6 +70,12 @@ Before opening a PR, run update → rollback → update; all three must succeed.
 > 'parameter.fleetAppPassword' could not be found...`. It tries to read it as its own option first
 > and then uses it as a parameter. What matters is the final `BUILD SUCCESS`.
 
+## Reference data
+
+There are no endpoints to create brands, models, categories, engine types or maintenance types:
+they are seeded in `02_dml/00_inserts` and resolved by name, never by hardcoded IDs. To add one,
+write a **new** changeset — never edit an applied one.
+
 ## Branches
 
 `feat/`, `fix/`, `chore/` → PR to `develop` (Squash and Merge). See
