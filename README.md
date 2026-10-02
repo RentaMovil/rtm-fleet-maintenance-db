@@ -4,6 +4,8 @@ Liquibase migrations for the tables of RentaMovil's **Fleet & Maintenance** serv
 
 - **Database:** `rentamovil` (SQL Server), **shared** by every service.
 - **Own schema:** `fleet` — every table in this repo is created as `fleet.<table>`. Nothing goes in `dbo`.
+- **Tables:** `branch`, `branch_operating_hour`, `brand`, `category`, `engine_type`, `vehicle_model`,
+  `vehicle`, `maintenance_type`, `vehicle_maintenance`.
 - **Own Liquibase history:** `dbo.DATABASECHANGELOG_FLEET` / `dbo.DATABASECHANGELOGLOCK_FLEET`.
 - **Run order across repos:** 2nd — after `rtm-iam-db` (this repo grants `fleet_app` access to
   `shared.audit`, which `rtm-iam-db` creates). `rtm-booking-reservation-db` will reference

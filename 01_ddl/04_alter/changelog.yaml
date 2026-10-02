@@ -1,1 +1,75 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 001_add_fk_branch_operating_hour_branch
+      author: david-erez
+      comment: Adds FK fleet.branch_operating_hour -> fleet.branch.
+      changes:
+        - sqlFile:
+            path: 001_add_fk_branch_operating_hour_branch.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/001_add_fk_branch_operating_hour_branch.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002_add_fks_vehicle_model
+      author: david-erez
+      comment: Adds FKs fleet.vehicle_model -> fleet.brand, fleet.category and fleet.engine_type.
+      changes:
+        - sqlFile:
+            path: 002_add_fks_vehicle_model.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/002_add_fks_vehicle_model.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 003_add_fks_vehicle
+      author: david-erez
+      comment: Adds FKs fleet.vehicle -> fleet.vehicle_model and fleet.branch.
+      changes:
+        - sqlFile:
+            path: 003_add_fks_vehicle.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/003_add_fks_vehicle.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 004_add_fks_vehicle_maintenance
+      author: david-erez
+      comment: Adds FKs fleet.vehicle_maintenance -> fleet.vehicle and fleet.maintenance_type.
+      changes:
+        - sqlFile:
+            path: 004_add_fks_vehicle_maintenance.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/004_add_fks_vehicle_maintenance.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 005_add_uq_branch_operating_hour_branch_id_day_of_week
+      author: david-erez
+      comment: Allows at most one operating-hour row per branch and weekday.
+      changes:
+        - sqlFile:
+            path: 005_add_uq_branch_operating_hour_branch_id_day_of_week.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/005_add_uq_branch_operating_hour_branch_id_day_of_week.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

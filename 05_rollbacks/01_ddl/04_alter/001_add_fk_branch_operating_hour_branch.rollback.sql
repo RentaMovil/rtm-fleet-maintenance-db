@@ -1,0 +1,1 @@
+ALTER TABLE fleet.branch_operating_hour DROP CONSTRAINT IF EXISTS fk_branch_operating_hour_branch;

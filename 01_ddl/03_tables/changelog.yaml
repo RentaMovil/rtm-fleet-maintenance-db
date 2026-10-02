@@ -1,1 +1,135 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_table_branch
+      author: david-erez
+      comment: Creates fleet.branch.
+      changes:
+        - sqlFile:
+            path: 001_create_table_branch.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/001_create_table_branch.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002_create_table_branch_operating_hour
+      author: david-erez
+      comment: Creates fleet.branch_operating_hour. FK to branch is added in 04_alter.
+      changes:
+        - sqlFile:
+            path: 002_create_table_branch_operating_hour.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/002_create_table_branch_operating_hour.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 003_create_table_brand
+      author: david-erez
+      comment: Creates fleet.brand.
+      changes:
+        - sqlFile:
+            path: 003_create_table_brand.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/003_create_table_brand.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 004_create_table_category
+      author: david-erez
+      comment: Creates fleet.category.
+      changes:
+        - sqlFile:
+            path: 004_create_table_category.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/004_create_table_category.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 005_create_table_engine_type
+      author: david-erez
+      comment: Creates fleet.engine_type.
+      changes:
+        - sqlFile:
+            path: 005_create_table_engine_type.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/005_create_table_engine_type.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 006_create_table_vehicle_model
+      author: david-erez
+      comment: Creates fleet.vehicle_model. FKs to brand, category and engine_type are added in 04_alter.
+      changes:
+        - sqlFile:
+            path: 006_create_table_vehicle_model.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/006_create_table_vehicle_model.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 007_create_table_vehicle
+      author: david-erez
+      comment: Creates fleet.vehicle. FKs to vehicle_model and branch are added in 04_alter.
+      changes:
+        - sqlFile:
+            path: 007_create_table_vehicle.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/007_create_table_vehicle.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 008_create_table_maintenance_type
+      author: david-erez
+      comment: Creates fleet.maintenance_type.
+      changes:
+        - sqlFile:
+            path: 008_create_table_maintenance_type.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/008_create_table_maintenance_type.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 009_create_table_vehicle_maintenance
+      author: david-erez
+      comment: Creates fleet.vehicle_maintenance. FKs to vehicle and maintenance_type are added in 04_alter.
+      changes:
+        - sqlFile:
+            path: 009_create_table_vehicle_maintenance.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/009_create_table_vehicle_maintenance.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
