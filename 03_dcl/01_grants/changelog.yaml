@@ -1,1 +1,30 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 001_grant_fleet_schema_to_fleet_app
+      author: david-erez
+      comment: Grants fleet_app read/write on the fleet schema only.
+      changes:
+        - sqlFile:
+            path: 001_grant_fleet_schema_to_fleet_app.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/001_grant_fleet_schema_to_fleet_app.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002_grant_insert_audit_to_fleet_app
+      author: david-erez
+      comment: Lets fleet_app append to shared.audit (insert only).
+      changes:
+        - sqlFile:
+            path: 002_grant_insert_audit_to_fleet_app.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/002_grant_insert_audit_to_fleet_app.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
