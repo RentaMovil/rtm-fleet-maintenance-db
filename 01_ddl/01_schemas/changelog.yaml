@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_schema_fleet
+      author: david-erez
+      comment: Creates the fleet schema that holds every table owned by the fleet-maintenance service.
+      changes:
+        - sqlFile:
+            path: 001_create_schema_fleet.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/001_create_schema_fleet.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
