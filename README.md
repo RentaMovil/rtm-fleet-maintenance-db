@@ -52,6 +52,7 @@ started by `rtm-iam-db`.
 # 1. Local configuration (once)
 cp liquibase.properties.example liquibase.properties
 # sa password = MSSQL_SA_PASSWORD from rtm-iam-db/.env
+# parameter.fleetAppPassword = a password for fleet_app (also DATABASE_PASSWORD in rtm-fleet-maintenance/.env)
 
 # 2. Pending changesets
 mvn liquibase:status
@@ -69,6 +70,14 @@ Before opening a PR, run update → rollback → update; all three must succeed.
 > With parameters, the Maven plugin prints a harmless `NoSuchFieldException: The field
 > 'parameter.fleetAppPassword' could not be found...`. It tries to read it as its own option first
 > and then uses it as a parameter. What matters is the final `BUILD SUCCESS`.
+
+## Service database user (`03_dcl`)
+
+Migrations run as `sa`. The `rtm-fleet-maintenance` service **never** uses `sa`: it connects as
+`fleet_app`, which can only read and write data in the `fleet` schema (no DDL, no other schemas,
+no `dbo`) and append rows to `shared.audit`. Its password is **not in the repo**: it comes from
+`parameter.fleetAppPassword` in `liquibase.properties` (git-ignored). If it's missing, the
+changeset fails on purpose.
 
 ## Reference data
 
