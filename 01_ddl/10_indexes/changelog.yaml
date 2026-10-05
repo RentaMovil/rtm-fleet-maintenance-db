@@ -1,1 +1,45 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_index_vehicle_status
+      author: david-erez
+      comment: Indexes fleet.vehicle.status for catalog searches.
+      changes:
+        - sqlFile:
+            path: 001_create_index_vehicle_status.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/001_create_index_vehicle_status.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002_create_index_vehicle_branch_id
+      author: david-erez
+      comment: Indexes fleet.vehicle.branch_id for branch filters.
+      changes:
+        - sqlFile:
+            path: 002_create_index_vehicle_branch_id.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/002_create_index_vehicle_branch_id.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 003_create_index_vehicle_maintenance_vehicle_id_status
+      author: david-erez
+      comment: Indexes the in-progress maintenance lookup per vehicle.
+      changes:
+        - sqlFile:
+            path: 003_create_index_vehicle_maintenance_vehicle_id_status.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/003_create_index_vehicle_maintenance_vehicle_id_status.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
