@@ -1,0 +1,2 @@
+ALTER TABLE fleet.vehicle_maintenance DROP CONSTRAINT IF EXISTS fk_vehicle_maintenance_maintenance_type;
+ALTER TABLE fleet.vehicle_maintenance DROP CONSTRAINT IF EXISTS fk_vehicle_maintenance_vehicle;

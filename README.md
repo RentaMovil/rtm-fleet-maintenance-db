@@ -4,6 +4,8 @@ Liquibase migrations for the tables of RentaMovil's **Fleet & Maintenance** serv
 
 - **Database:** `rentamovil` (SQL Server), **shared** by every service.
 - **Own schema:** `fleet` — every table in this repo is created as `fleet.<table>`. Nothing goes in `dbo`.
+- **Tables:** `branch`, `branch_operating_hour`, `brand`, `category`, `engine_type`, `vehicle_model`,
+  `vehicle`, `maintenance_type`, `vehicle_maintenance`.
 - **Own Liquibase history:** `dbo.DATABASECHANGELOG_FLEET` / `dbo.DATABASECHANGELOGLOCK_FLEET`.
 - **Run order across repos:** 2nd — after `rtm-iam-db` (this repo grants `fleet_app` access to
   `shared.audit`, which `rtm-iam-db` creates). `rtm-booking-reservation-db` will reference
@@ -67,6 +69,12 @@ Before opening a PR, run update → rollback → update; all three must succeed.
 > With parameters, the Maven plugin prints a harmless `NoSuchFieldException: The field
 > 'parameter.fleetAppPassword' could not be found...`. It tries to read it as its own option first
 > and then uses it as a parameter. What matters is the final `BUILD SUCCESS`.
+
+## Reference data
+
+There are no endpoints to create brands, models, categories, engine types or maintenance types:
+they are seeded in `02_dml/00_inserts` and resolved by name, never by hardcoded IDs. To add one,
+write a **new** changeset — never edit an applied one.
 
 ## Branches
 
