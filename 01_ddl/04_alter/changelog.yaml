@@ -73,3 +73,18 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/04_alter/005_add_uq_branch_operating_hour_branch_id_day_of_week.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 006_add_columns_branch_coordinates
+      author: thiagxrg
+      comment: Adds optional latitude/longitude to fleet.branch for the frontend map.
+      changes:
+        - sqlFile:
+            path: 006_add_columns_branch_coordinates.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/006_add_columns_branch_coordinates.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

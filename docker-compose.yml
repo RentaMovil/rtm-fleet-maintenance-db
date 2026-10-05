@@ -1,0 +1,22 @@
+# Runs the fleet migrations against the SQL Server started by rtm-iam-db (container "sqlserver"
+# on the shared "rentamovil" network). Order: rtm-iam-db -> this repo -> rtm-booking-db.
+#   docker compose up --build
+services:
+  migrations:
+    build: .
+    networks: [rentamovil]
+    command:
+      - --url=jdbc:sqlserver://sqlserver:1433;databaseName=${MSSQL_DATABASE:-rentamovil};encrypt=true;trustServerCertificate=true
+      - --username=sa
+      - --password=${MSSQL_SA_PASSWORD}
+      - --search-path=/liquibase/changelog
+      - --changelog-file=changelog/changelog-master.yaml
+      - --database-changelog-table-name=DATABASECHANGELOG_FLEET
+      - --database-changelog-lock-table-name=DATABASECHANGELOGLOCK_FLEET
+      - update
+      - -DfleetAppPassword=${FLEET_APP_PASSWORD}
+    restart: "no"
+
+networks:
+  rentamovil:
+    external: true
