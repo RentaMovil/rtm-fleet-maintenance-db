@@ -76,8 +76,8 @@ databaseChangeLog:
 
   - changeSet:
       id: 006_add_columns_branch_coordinates
-      author: thiagxrg
-      comment: Adds optional latitude/longitude to fleet.branch for the frontend map.
+      author: david-erez
+      comment: Adds optional latitude/longitude to fleet.branch (both or neither).
       changes:
         - sqlFile:
             path: 006_add_columns_branch_coordinates.sql
@@ -86,5 +86,35 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/04_alter/006_add_columns_branch_coordinates.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 007_add_columns_vehicle_maintenance_observations_image_url
+      author: david-erez
+      comment: Adds optional observations and image_url to fleet.vehicle_maintenance.
+      changes:
+        - sqlFile:
+            path: 007_add_columns_vehicle_maintenance_observations_image_url.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/007_add_columns_vehicle_maintenance_observations_image_url.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 008_alter_ck_vehicle_maintenance_status
+      author: david-erez
+      comment: Adds CANCELLED to the vehicle_maintenance status CHECK (cancel replaces delete).
+      changes:
+        - sqlFile:
+            path: 008_alter_ck_vehicle_maintenance_status.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/008_alter_ck_vehicle_maintenance_status.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
