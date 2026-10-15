@@ -1,0 +1,1 @@
+ALTER TABLE fleet.branch_operating_hour DROP CONSTRAINT IF EXISTS uq_branch_operating_hour_branch_id_day_of_week;

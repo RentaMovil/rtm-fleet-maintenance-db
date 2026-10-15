@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_insert_categories
+      author: david-erez
+      comment: Seeds the vehicle categories.
+      changes:
+        - sqlFile:
+            path: 001_insert_categories.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/001_insert_categories.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002_insert_engine_types
+      author: david-erez
+      comment: Seeds the engine types.
+      changes:
+        - sqlFile:
+            path: 002_insert_engine_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/002_insert_engine_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 003_insert_brands
+      author: david-erez
+      comment: Seeds the vehicle brands.
+      changes:
+        - sqlFile:
+            path: 003_insert_brands.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/003_insert_brands.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 004_insert_vehicle_models
+      author: david-erez
+      comment: Seeds the vehicle models with their category and engine type.
+      changes:
+        - sqlFile:
+            path: 004_insert_vehicle_models.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/004_insert_vehicle_models.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 005_insert_maintenance_types
+      author: david-erez
+      comment: Seeds the maintenance types.
+      changes:
+        - sqlFile:
+            path: 005_insert_maintenance_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/005_insert_maintenance_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
