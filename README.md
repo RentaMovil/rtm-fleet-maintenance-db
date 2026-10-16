@@ -37,8 +37,13 @@ changelog/changelog-master.yaml   ← entry point: includes 01_ddl → 02_dml �
 ```
 
 Every folder exists even when empty (`databaseChangeLog: []` in its `changelog.yaml`, `.gitkeep` in
+<<<<<<< HEAD
 its `05_rollbacks` mirror). This repo does **not** start SQL Server: that container is started by
 `rtm-iam-db` (shared instance), the same as every other `*-db` repo.
+=======
+its `05_rollbacks` mirror). The SQL Server container is started by `rtm-iam-db`; `docker-compose.yml` here only runs this
+repo's migrations against it (`cp .env.example .env`, fill the passwords, `docker compose up --build`).
+>>>>>>> fe861e60699c758c7f847eb81a9bff570dc74ede
 
 ## Requirements
 

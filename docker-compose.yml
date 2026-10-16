@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 # Migraciones de Fleet & Maintenance sobre la base compartida "rentamovil".
 # A diferencia de rtm-iam-db, este compose NO levanta SQL Server: esa instancia la levanta
 # rtm-iam-db, que es el primero en correr. Aquí solo se aplican los changesets de este repo.
 services:
   # Una sola vez: corre las migraciones (lo mismo que "mvn liquibase:update") y se apaga.
   # Si ya están aplicadas no hace nada. Imagen en el Dockerfile de este repo.
+=======
+# Runs the fleet migrations against the SQL Server started by rtm-iam-db (container "sqlserver"
+# on the shared "rentamovil" network). Order: rtm-iam-db -> this repo -> rtm-booking-db.
+#   docker compose up --build
+services:
+>>>>>>> fe861e60699c758c7f847eb81a9bff570dc74ede
   migrations:
     build: .
     networks: [rentamovil]
@@ -20,6 +27,9 @@ services:
     restart: "no"
 
 networks:
+<<<<<<< HEAD
   # Red compartida por todos los servicios de RentaMovil, cada uno desde su propio repo
+=======
+>>>>>>> fe861e60699c758c7f847eb81a9bff570dc74ede
   rentamovil:
     external: true
