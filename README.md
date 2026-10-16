@@ -37,14 +37,15 @@ changelog/changelog-master.yaml   ← entry point: includes 01_ddl → 02_dml �
 ```
 
 Every folder exists even when empty (`databaseChangeLog: []` in its `changelog.yaml`, `.gitkeep` in
-its `05_rollbacks` mirror). There is **no** `docker-compose.yml` here: the SQL Server container is
-started by `rtm-iam-db`.
+its `05_rollbacks` mirror). This repo does **not** start SQL Server: that container is started by
+`rtm-iam-db` (shared instance), the same as every other `*-db` repo.
 
 ## Requirements
 
 - Java 17+
 - Maven 3.9+
 - SQL Server running and `rtm-iam-db` already migrated (`docker compose up -d` in `rtm-iam-db`)
+- Docker Desktop (only if using the Docker usage path below)
 
 ## Local usage
 
@@ -66,6 +67,27 @@ mvn liquibase:update
 
 Undo the last changeset: `mvn liquibase:rollback -Dliquibase.rollbackCount=1`.
 Before opening a PR, run update → rollback → update; all three must succeed.
+
+### With Docker (shared `rentamovil` network)
+
+```bash
+# Once per machine (the data repos share this network)
+docker network create rentamovil
+
+# SQL Server + database + IAM migrations first (rtm-iam-db)
+cd ../rtm-iam-db && docker compose up -d
+
+# Then this repo's migrations
+cp .env.example .env   # edit MSSQL_SA_PASSWORD / FLEET_APP_PASSWORD to match rtm-iam-db's values
+docker compose up -d
+```
+
+| Container | What it does | Normal status |
+|---|---|---|
+| `migrations` | Runs this repo's migrations (same as `mvn liquibase:update`) | `Exited (0)` |
+
+Run order to bring the whole stack up: **rtm-iam-db → rtm-fleet-maintenance-db → rtm-iam →
+rtm-fleet-maintenance → rtm-api-gateway** (`docker compose up -d` in each).
 
 > With parameters, the Maven plugin prints a harmless `NoSuchFieldException: The field
 > 'parameter.fleetAppPassword' could not be found...`. It tries to read it as its own option first
